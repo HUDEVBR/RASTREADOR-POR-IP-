@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle
+const GlobalStyle = createGlobalStyle`
 * {
     margin: 0,
     padding: 0,
@@ -12,6 +12,6 @@ const GlobalStyle = createGlobalStyle
         --gray900: hsl(0, 0%, 17%)
         --gray700: hsl(0, 0%, 59%)
     }
-};
-
+}
+`
 export default GlobalStyle
