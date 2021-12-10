@@ -9,7 +9,7 @@ export default function Home() {
 
           <div>
           <input type='text' placeholder='Search for any IP address or domain'></input>
-          <button></button>
+          <button><Arrow/></button>
           </div>
       
 
