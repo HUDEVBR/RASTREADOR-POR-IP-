@@ -83,7 +83,7 @@ export const SearchInfos = styled.section`
    padding: 1rem;
 
    ul{
-       display:flex;
+       display: flex;
        padding: 2.5rem 4rem;
        justify-content: center;
        list-style: none;
