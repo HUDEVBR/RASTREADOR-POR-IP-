@@ -1,4 +1,5 @@
 import Arrow from '../assets/icon-arrow.svg';
+import { Container, SearchSection, SearchInfos, MapContainer } from '../styles/HomeStyles';
 
 export default function Home() {
   return (
