@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.main`
     display:grid;
-    grid-template-rows: 2.5fr, 4fr;
+    grid-template-rows: 2.5fr 4fr;
     width: 100vw;
     height: 100vh;
 `;
@@ -23,7 +23,7 @@ export const SearchSection = styled.header`
         font-size: 2.5rem;
         color: #fff;
         font-weight: 500;
-        margin-top: 3rem;
+        margin-top: ${props => props.results ? '3rem' : '0'};
         margin-bottom: 3rem;
     }
 
@@ -31,7 +31,7 @@ export const SearchSection = styled.header`
         display: flex;
         align-items: center;
         transition: .5s;
-        margin-bottom: 0rem;
+        margin-bottom: ${props => props.results ? '-3rem' : '0'};
 
         input{
             border: none;
@@ -82,6 +82,19 @@ export const SearchInfos = styled.section`
    box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.2);
    padding: 1rem;
 
+    @keyframes fadeUp{
+        from{
+            transform: translateY(0px);
+            opacity: 0; 
+        }
+        to{
+            transform: translateY(110px);
+            opacity: 1;
+        }
+    }
+
+    animation: fadeUp .5s ease-in-out forwards;
+
    ul{
        display: flex;
        padding: 2.5rem 4rem;
@@ -121,7 +134,7 @@ export const SearchInfos = styled.section`
                position: absolute;
 
                top:50%;
-               transform: translate(-50%, -50%)
+               transform: translate(-50%, -50%);
            }
        }
    }
