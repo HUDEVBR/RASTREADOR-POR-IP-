@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Arrow from '../assets/icon-arrow.svg';
 import { Container, SearchSection, SearchInfos, MapContainer } from '../styles/HomeStyles';
+import Loader from '../components/Loader';
 
 export default function Home() {
   
@@ -68,7 +69,7 @@ export default function Home() {
 
           <div>
           <input type='text' placeholder='Search for any IP address or domain' value={ipAddress} onChange={({target}) => setIpAddress(target.value)}/>
-          <button onClick={handleSubmit}> <Arrow/> </button>
+          <button disabled={!!loading} onClick={handleSubmit}> {loading ? <Loader /> : <Arrow />} </button>
           </div>
       
           {results?.location && (
