@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
 import Arrow from '../assets/icon-arrow.svg';
 import { Container, SearchSection, SearchInfos, MapContainer } from '../styles/HomeStyles';
 
 export default function Home() {
-  const teste = false;
+  const teste = true;
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState({});
 
@@ -14,16 +15,16 @@ export default function Home() {
         setLoading(true);
 
         const response = await fetch(`https://geo.ipify.org/api/v2/country?apiKey=${apiKey}`);
-        const data = responde.json();
+        const data = await response.json();
 
         if (response.status != 200) throw new Error() ;
 
         setResults(data);
 
       }catch (err) {
-        console.log(err)
+        console.log(err);
       }finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
     getInitialData();
@@ -32,7 +33,7 @@ export default function Home() {
 
   return (
       <Container>
-        <SearchSection results={true}>
+        <SearchSection results={results.location}>
           <h2> IP Address Tracker</h2>
 
           <div>
@@ -40,7 +41,7 @@ export default function Home() {
           <button><Arrow/></button>
           </div>
       
-          {teste && (
+          {results?.location && (
             <SearchInfos>
             <ul>
               <li>
@@ -52,7 +53,7 @@ export default function Home() {
               <li>
                 <div>
                   <strong>Location</strong>
-                  <p>Brooklyn, NY<br/> 10001</p>
+                  <p>{`${results.location.city}, ${results.location.country}`}<br/> {results.location.region}</p>
                 </div>
               </li>
               <li>
