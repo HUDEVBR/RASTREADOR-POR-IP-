@@ -13,20 +13,20 @@ export default class MyDocument extends Document {
             sheet.collectStyles(<App {...props} />),
         })
 
-      const initialProps = await Document.getInitialProps(ctx)
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
+        const initialProps = await Document.getInitialProps(ctx)
+        return {
+          ...initialProps,
+          styles: (
+            <>
+              {initialProps.styles}
+              {sheet.getStyleElement()}
+            </>
+          ),
+        }
+      } finally {
+        sheet.seal()
       }
-    } finally {
-      sheet.seal()
     }
-  }
 
   render() {
     return (
