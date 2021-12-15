@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import Arrow from '../assets/icon-arrow.svg';
 import { Container, SearchSection, SearchInfos, MapContainer } from '../styles/HomeStyles';
-import Loader from '../components/Loader';
+import Loader from '../components/Loaders';
+import dynamic from 'next/dynamic';
+
+const Map = dynamic(() => import('../components/Map'), { ssr: false });
 
 export default function Home() {
   
@@ -61,6 +64,9 @@ export default function Home() {
       setLoading(false);
     }
   }
+
+  const defaultPosition = [-22.684992, -43.466560]
+
   console.log(ipAddress);
   return (
       <Container>
@@ -106,8 +112,8 @@ export default function Home() {
         
         </SearchSection>
 
-        <MapContainer>
-          
+        <MapContainer loading={loading}>
+          <Map defaultPosition={defaultPosition} location={results.location ? [results.location.lat, results.location.lng] : defaultPosition}/> 
         </MapContainer>
       </Container>
     )
