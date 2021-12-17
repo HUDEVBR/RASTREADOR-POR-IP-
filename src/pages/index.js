@@ -3,6 +3,8 @@ import Arrow from '../assets/icon-arrow.svg';
 import { Container, SearchSection, SearchInfos, MapContainer } from '../styles/HomeStyles';
 import Loader from '../components/Loaders';
 import dynamic from 'next/dynamic';
+import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 const Map = dynamic(() => import('../components/Map'), { ssr: false });
 
@@ -19,7 +21,7 @@ export default function Home() {
       try{
         setLoading(true);
 
-        const response = await fetch(`https://geo.ipify.org/api/v2/country?apiKey=${apiKey}`);
+        const response = await fetch(`https://geo.ipify.org/api/v1?apiKey=${apiKey}`);
         const data = await response.json();
 
         if (response.status != 200) throw new Error() ;
@@ -59,17 +61,32 @@ export default function Home() {
       }
 
     } catch (err) {
-      console.log(err)
+      toast.error('An error ocurred while searching for this IP or domain! Please try again.')
     } finally {
       setLoading(false);
     }
   }
 
+  //aviso adblock
+
+  useEffect(() => {
+    toast.warn('Please disable ADBlock for the application works normally 😁 🚀', {
+      autoClose: '10000', 
+    })
+  }, [])
+
   const defaultPosition = [-22.684992, -43.466560]
+
+  //titulo de pagina
+
+  //arquivo SEO
 
   console.log(ipAddress);
   return (
       <Container>
+        <Head>
+          <title>Geolocalizador de IP - Encontre qualquer IP ou domínio facilmente</title>
+        </Head>
         <SearchSection results={results.location}>
           <h2> Localizador de IP </h2>
 
@@ -90,7 +107,7 @@ export default function Home() {
               </li>
               <li>
                 <div>
-                  <strong>Location</strong>
+                  <strong>Location</strong> 
                   <p>{`${results.location.city}, ${results.location.country}`}<br/> {results.location.region}</p>
                 </div>
               </li>
@@ -112,7 +129,8 @@ export default function Home() {
         
         </SearchSection>
 
-        <MapContainer loading={loading}>
+          
+          <MapContainer loading={loading}>
           <Map defaultPosition={defaultPosition} location={results.location ? [results.location.lat, results.location.lng] : defaultPosition}/> 
         </MapContainer>
       </Container>

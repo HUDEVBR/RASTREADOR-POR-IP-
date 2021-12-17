@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-    display:grid;
+    display: grid;
     grid-template-rows: 2.5fr 4fr;
     width: 100vw;
     height: 100vh;
+
+    .leaflet-container{
+        z-index:100;
+    }
 `;
 
 export const SearchSection = styled.header`
@@ -27,7 +31,7 @@ export const SearchSection = styled.header`
         margin-bottom: 3rem;
     }
 
-    div {
+    > div {
         display: flex;
         align-items: center;
         transition: .5s;
@@ -37,7 +41,7 @@ export const SearchSection = styled.header`
             border: none;
             padding: 1.3rem;
             font-size: 1.3rem;
-            width: 35rem;
+            width: 40rem;
             border-radius: 1rem 0 0 1rem;
             color: var(--gray900);
             outline: none;
@@ -55,7 +59,7 @@ export const SearchSection = styled.header`
             border-radius: 0 1rem 1rem 0;
             cursor: pointer;
  
-            display:flex;
+            display: flex;
             align-items: center;
             justify-content: center;
 
@@ -70,6 +74,29 @@ export const SearchSection = styled.header`
             }
         }
     }
+
+    @media(max-width: 768px){
+        h2{
+            font-size: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        > div input{
+                padding: 1rem;
+                font-size: .9rem;
+                width: calc(88vw -4rem);
+        }
+    }
+
+    @media(max-width: 500px){
+        > div input {
+            width: calc(90vw -4rem);
+
+            &::placeholder{
+                font-size: .7rem;
+            }
+        }
+    }
 `;
 
 export const SearchInfos = styled.section`
@@ -80,7 +107,12 @@ export const SearchInfos = styled.section`
    z-index: 10;
    -webkit-box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.2);
    box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.2);
-   padding: 1rem;
+   padding: -3rem;
+
+   @media(max-wdith: 768px) {
+       bottom: -165px;
+       padding: 0;
+   }
 
     @keyframes fadeUp{
         from{
@@ -109,12 +141,21 @@ export const SearchInfos = styled.section`
            font-size: .9rem;
            display: block;
            margin-bottom: .5rem;
+           
        }
 
        p{
            font-size: 2rem;
            font-weight: 500;
            color: var(--gray900);
+           
+       }
+
+       @media(max-width: 1280px){
+            width: 90vw;
+            p{
+                font-size: 1.5rem;
+            }
        }
     
        li + li {
@@ -126,7 +167,7 @@ export const SearchInfos = styled.section`
            }
 
            &:before{
-               content:'';
+               content: '';
                display: inline-block;
                width: 2px;
                height: 75px;
@@ -137,13 +178,49 @@ export const SearchInfos = styled.section`
                transform: translate(-50%, -50%);
            }
        }
+
+       @media(max-width: 768px){
+           flex-direction: column;
+           align-items: center;
+           text-align: center;
+           width: 80vw;
+           padding: 2rem;
+
+           p{
+            font-size: 1.5rem;
+           }
+
+           li + li{
+                padding-top: 1.3rem;
+                margin: 0;
+
+                div{
+                    padding: 0;
+                }
+
+                &:before{
+                    display: none;
+                }
+           }
+       }
+
+       @media(max-width: 500px){
+           width:90vw;
+           padding: 1.5rem
+       }
    }
 `;
 
 export const MapContainer = styled.section`
    width: 100%;
+   z-index:1;
+
    background: #ccc;
 
    pointer-events: ${props => props.loading ? 'none' : 'auto'};
 
+   .leaflet-top {
+       top: initial;
+       bottom: 1rem;
+   }
 `;
