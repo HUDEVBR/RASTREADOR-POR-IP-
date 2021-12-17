@@ -5,7 +5,7 @@ export const Container = styled.div`
 .sk-cube-grid {
     width: 60px ;
     height: 60px ;
-    margin-top: -140px ;
+    /* margin-top: -140px ; */
   }
   
   .sk-cube-grid .sk-cube {

@@ -129,14 +129,15 @@ export const SearchInfos = styled.section`
 
    ul{
        display: flex;
-       padding: 2.5rem 4rem;
+       padding: 1.5rem 4rem;
        justify-content: center;
        list-style: none;
        width: 80vw;
+       height: auto;
 
        strong{
            text-transform: uppercase;
-           font-weight: 700;
+           font-weight: 900;
            color: var(--gray700);
            font-size: .9rem;
            display: block;
@@ -145,7 +146,7 @@ export const SearchInfos = styled.section`
        }
 
        p{
-           font-size: 2rem;
+           font-size: 1.3rem;
            font-weight: 500;
            color: var(--gray900);
            

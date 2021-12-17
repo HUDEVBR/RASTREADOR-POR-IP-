@@ -70,7 +70,7 @@ export default function Home() {
   //aviso adblock
 
   useEffect(() => {
-    toast.warn('Please disable ADBlock for the application works normally 😁 🚀', {
+    toast.warn('Please disable ADBlock for the application works normally 😁 🚀',  {
       autoClose: '10000', 
     })
   }, [])
