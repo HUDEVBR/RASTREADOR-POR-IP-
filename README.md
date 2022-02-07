@@ -4,6 +4,6 @@ Este projeto foi feito como aprendizado de tecnologias como:
 #ReactJS <br>
 #Javascript <br>
 #CSS <br>
-#CSS in Javascript <br><br>
+#NextJS <br><br>
 
 Foram utilizadas algumas dependências como:
